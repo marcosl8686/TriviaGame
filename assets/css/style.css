@@ -1,0 +1,39 @@
+h1 {
+	font-family: 'Bungee Inline', cursive;
+	color: red;	
+}
+body { 
+  background: url(../images/onePunchBG.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.mainContent {
+	width: 750px;
+	height: 600px;
+	margin-top:40px;
+	text-align: center;
+	z-index: 10;
+}
+#logo {
+	width: 70%;
+}
+#start {
+	margin-top:80px;
+}
+#gamePage {
+  background: url(../images/1punch.jpg) no-repeat center center fixed; 
+  background-size: 100% 100%;
+}
+.answer {
+    padding: 23px;
+    border: solid 2px black;
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.answer:hover {
+	background-color: grey;
+	opacity: 40%;
+}
