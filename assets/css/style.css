@@ -1,3 +1,6 @@
+* {
+  font-family: 'Bungee Inline', cursive;
+}
 h1 {
 	font-family: 'Bungee Inline', cursive;
 	color: red;	
@@ -23,11 +26,11 @@ body {
 	margin-top:80px;
 }
 #gamePage {
-  background: url(../images/1punch.jpg) no-repeat center center fixed; 
+  background: url(../images/background.jpg) no-repeat center center fixed; 
   background-size: 100% 100%;
 }
 #endGame {
-  background: url(../images/1punch.jpg) no-repeat center center fixed; 
+  background: url(../images/background.jpg) no-repeat center center fixed; 
   background-size: 100% 100%;
 }
 .answer {
@@ -42,9 +45,19 @@ body {
 	opacity: 40%;
 }
 .question {
-  font-size: 30px;
+  font-size: 20px;
 }
 .imgStyle {
   width: 350px;
   height: 300px;
+}
+.endResult {
+  font-size: 40px;
+}
+#endImg {
+  width: 400px;
+}
+#timeLeft {
+  font-size: 20px;
+  color:red;
 }

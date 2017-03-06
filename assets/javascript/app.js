@@ -1,6 +1,6 @@
 
 var trivia = {
-	timeLeft: 10,
+	timeLeft: 30,
 	correctAnswer: 0,
 	incorrectAnswer: 0,
 	resetGame: function() {
@@ -9,8 +9,7 @@ var trivia = {
 		n = 0;
 		nextGame(questionList[n]);
 	}
-
-}
+};
 var questionList = [
 		question1 = {	
 		question: "What is the name of the main character?",
@@ -24,7 +23,7 @@ var questionList = [
 	},
 
 	question2 = {	
-		question: "who is saitama's apprentice?",
+		question: "Who is saitama's apprentice?",
 		incorrectAnswer1: "Puri-Puri-Prisoner",
 		incorrectAnswer2: "Pig God",
 		correctAnswer: {
@@ -46,7 +45,7 @@ var questionList = [
 	},
 
 	question4 = {	
-		question: "how was Speed-o-Sound Sonic defeated?",
+		question: "How was Speed-o-Sound Sonic defeated?",
 		correctAnswer: {
 			answer: "landed on Saitama's fist",
 			image: "assets/images/gg.gif"
@@ -74,16 +73,9 @@ var n = 0;
 //this will hide the gamePage at start
 $("#gamePage").hide();
 $("#endGame").hide();
-//this will hide the startPage and show the gamePage, will also run the gameStart function and also run divCreater.
-$("#start").click(function(){
-	divCreater(question1);
-	$("#gamePage").show();
-	$("#startPage").hide();
-	gameStart(question1);
-	setInterval(time, 1000);
-})
 
-function divCreater(questionObj){ // this function will create a div for every property of the given object. will also give a class of "answer" and id of the name of the property
+
+function divCreator(questionObj){ // this function will create a div for every property of the given object. will also give a class of "answer" and id of the name of the property
 	var newImg = $('<img class="imgStyle">');
 	$(".imgStyle").hide();
 	$("#gamePage").append(newImg);
@@ -95,6 +87,14 @@ function divCreater(questionObj){ // this function will create a div for every p
 		$(".imgStyle").hide();
 	}
 }
+
+function clickEvent() { //this will check if the answer is correct or incorrect and run function depending if it is correct or incorrect
+		$("#correctAnswer").click(correct);
+		$("#incorrectAnswer1").click(incorrect);
+		$("#incorrectAnswer2").click(incorrect);
+		$("#incorrectAnswer3").click(incorrect);
+}
+
 //this function will post the content of the properties to our HTML. and call the clickEvent function.
 function gameStart(x) { 
 	$("#timeLeft").html(trivia.timeLeft);
@@ -105,24 +105,21 @@ function gameStart(x) {
 	$("#incorrectAnswer3").html(x.incorrectAnswer3);
 	clickEvent();
 }
-function clickEvent() { //this will check if the answer is correct or incorrect and run function depending if it is correct or incorrect
-		$("#correctAnswer").click(correct);
-		$("#incorrectAnswer1").click(incorrect);
-		$("#incorrectAnswer2").click(incorrect);
-		$("#incorrectAnswer3").click(incorrect);
-}
-var time = function() {
+
+function time() {
 	if (trivia.timeLeft > 0) {
 		trivia.timeLeft--;
 		$("#timeLeft").html(trivia.timeLeft);
 	}
-	else if (trivia.timeLeft == 0) {
+	else if (trivia.timeLeft === 0) {
 		incorrect();
 	}
 }
+
 function resetTime() {
-	trivia.timeLeft = 10;
+	trivia.timeLeft = 30;
 }
+
 function correct() {
 	var gj = "You got it right!"
 	var imgShow = questionList[n].correctAnswer.image;
@@ -134,32 +131,32 @@ function correct() {
 	$(".answer").hide();
 	$(".imgStyle").attr("src",imgShow);
 	$("#question").html(gj)
-	setTimeout(call, 3000);
-
+	setTimeout(call, 2500);
 }
+
 function incorrect() {
-	var imgShow = "assets/images/incorrect.gif"
+	var imgShow = "assets/images/wrong.gif";
 	var gj = "Wrong, the correct answer is " + questionList[n].correctAnswer.answer;
-	trivia.incorrectAnswer ++;
-	console.log(trivia.incorrectAnswer + " this is the incorrectAnswer count")
-	console.log(n + " this is the n number")
+	trivia.incorrectAnswer++;
+	console.log(trivia.incorrectAnswer + " this is the incorrectAnswer count");
+	console.log(n + " this is the n number");
 	$(".imgStyle").show();
 	$("#next").show();
 	$(".answer").hide();
 	$(".imgStyle").attr("src",imgShow);
 	$("#question").html(gj)
-
-	call();
-	// setTimeout(call, 3000);
+	// call();
+	setTimeout(call, 2500);
+	resetTime();
 }
-function incorrectTimer() {
-	if(trivia.timeLeft <= 0) {
-		incorrect();
-	}
-}
+// function incorrectTimer() {
+// 	if(trivia.timeLeft <= 0) {
+// 		incorrect();
+// 	}
+// }
 function call() {
 	n++;
-	if(n === questionList[n]) {
+	if(n == questionList.length) {
 		endGame();
 	}
 	else {
@@ -197,5 +194,14 @@ function endGame() {
 		trivia.resetGame();
 	})	
 }
+
+//this will hide the startPage and show the gamePage, will also run the gameStart function and also run divCreator.
+$("#start").click(function(){
+	divCreator(question1);
+	$("#gamePage").show();
+	$("#startPage").hide();
+	gameStart(question1);
+	setInterval(time, 1000);
+})
 
 
